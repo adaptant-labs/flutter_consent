@@ -1,0 +1,19 @@
+name: flutter_consent
+description: Consent management in Flutter
+version: 0.0.1
+authors:
+  - Adaptant Labs <labs@adaptant.io>
+  - Paul Mundt <paul.mundt@adaptant.io>
+
+homepage: https://github.com/adaptant-labs/flutter_consent
+repository: https://github.com/adaptant-labs/flutter_consent
+issue_tracker: https://github.com/adaptant-labs/flutter_consent/issues
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_radio_slider: ^0.0.1
+  flutter_swiper: ^1.1.6

@@ -35,6 +35,8 @@ class _LinearConsentSelectorState extends State<LinearConsentSelector> {
 
   @override
   Widget build(BuildContext context) {
+    final sliderThemeData = SliderTheme.of(context);
+
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -72,7 +74,12 @@ class _LinearConsentSelectorState extends State<LinearConsentSelector> {
                   },
                   autoplay: false,
                   itemCount: widget.consentSpecifications.length,
-                  pagination: SwiperPagination(),
+                  pagination: SwiperPagination(
+                    builder: DotSwiperPaginationBuilder(
+                      color: sliderThemeData.inactiveTickMarkColor,
+                      activeColor: sliderThemeData.activeTickMarkColor,
+                    ),
+                  ),
                   control: SwiperControl(),
                 ),
               ),

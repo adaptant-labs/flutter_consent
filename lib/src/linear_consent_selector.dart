@@ -59,6 +59,7 @@ class _LinearConsentSelectorState extends State<LinearConsentSelector> {
             child: Column(children: <Widget>[
               Expanded(
                 child: Swiper(
+                  key: UniqueKey(),
                   index: _value,
                   onIndexChanged: (index) {
                     setState(() {

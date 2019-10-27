@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_radio_slider/flutter_radio_slider.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'consent_specification.dart';
-import 'consent_card.dart';
+import 'widgets/consent_card.dart';
 
 class LinearConsentSelector extends StatefulWidget {
   final List<ConsentSpecification> consentSpecifications;

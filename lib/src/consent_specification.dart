@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 
 class FlutterConsent {
   String formatScopes(List<String> scopes) {
-    if (scopes.length == 1) {
-      return scopes.first;
-    } else if (scopes.length == 2) {
-      return scopes.first + " and " + scopes.last;
-    } else {
-      // Handle oxford comma insertion
-      Iterable<String> scopeStr = scopes.getRange(0, scopes.length - 1);
-      return scopeStr.join(', ') + ", and ${scopes.last}";
+    switch (scopes.length) {
+      case 0:
+        return "";
+      case 1:
+        return scopes.first;
+      case 2:
+        return scopes.first + " and " + scopes.last;
+      default:
+        // Handle oxford comma insertion
+        Iterable<String> scopeStr = scopes.getRange(0, scopes.length - 1);
+        return scopeStr.join(', ') + ", and ${scopes.last}";
     }
   }
 }
@@ -29,6 +32,6 @@ class ConsentSpecificationResponse {
   const ConsentSpecificationResponse({
     @required this.allowedScopes,
     this.deniedScopes,
-    @required this.level
+    this.level
   });
 }

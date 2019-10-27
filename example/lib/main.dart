@@ -94,7 +94,24 @@ class _BinaryConsentDemoState extends State<BinaryConsentDemo> {
               Theme.of(context).textTheme.title.copyWith(color: Colors.white),
         ),
       ),
-      body: BinaryConsentSelector(),
+      body: BinaryConsentSelector(
+        consentSpecifications: consentSpecifications,
+        onChanged: (allowedIndices) {
+          List<String> allowedScopes = List<String>();
+
+          if (allowedIndices.isNotEmpty) {
+            allowedIndices.forEach((index) =>
+                allowedScopes.addAll(consentSpecifications[index].scopes));
+            allowedScopes = allowedScopes.toSet().toList();
+          }
+
+          ConsentSpecificationResponse response = ConsentSpecificationResponse(
+            allowedScopes: allowedScopes,
+          );
+
+          Navigator.pop(context, response);
+        },
+      ),
     );
   }
 }
@@ -118,9 +135,14 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Text("Authorized Scopes: $authorizedScopes"),
           RaisedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => BinaryConsentDemo()));
+              onPressed: () async {
+                final ConsentSpecificationResponse result =
+                    await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => BinaryConsentDemo()));
+                setState(() {
+                  authorizedScopes =
+                      flutterConsent.formatScopes(result.allowedScopes);
+                });
               },
               child: Text('Binary Consent Demo')),
           RaisedButton(
@@ -151,6 +173,16 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        sliderTheme: SliderThemeData(
+          trackHeight: 10,
+          overlayColor: Colors.blue.withAlpha(32),
+          activeTickMarkColor: Colors.lightBlue,
+          activeTrackColor: Colors.grey[300],
+          inactiveTrackColor: Colors.grey[300],
+          inactiveTickMarkColor: Colors.grey[500],
+        ),
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Flutter Consent example app'),

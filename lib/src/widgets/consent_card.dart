@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'consent_specification.dart';
+import '../consent_specification.dart';
 
 class ConsentCard extends StatelessWidget {
   static final FlutterConsent _flutterConsent = FlutterConsent();

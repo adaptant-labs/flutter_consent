@@ -1,6 +1,6 @@
 name: flutter_consent
 description: Consent management in Flutter
-version: 0.0.1
+version: 0.0.2
 authors:
   - Adaptant Labs <labs@adaptant.io>
   - Paul Mundt <paul.mundt@adaptant.io>
